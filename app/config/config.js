@@ -3,8 +3,14 @@ angular.module('whooStreams')
     $locationProvider.hashPrefix('')
     $routeProvider
     .when('/', {
-        controller: 'app/controller/MainCtrl',
+        controller: 'MainCtrl',
         templateUrl: 'app/partials/main.html'
+    }).when('/login',{
+        controller: 'LoginCtrl',
+        templateUrl: 'app/partials/login.html'
+    }).when('/register',{
+        controller: 'RegisterCtrl',
+        templateUrl: 'app/partials/register.html'
     }).otherwise({
         redirectTo:'/'
     })

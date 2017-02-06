@@ -1,1 +1,1 @@
-angular.module('whooStreams',['ngRoute'])
+angular.module('whooStreams',['ngRoute']);
