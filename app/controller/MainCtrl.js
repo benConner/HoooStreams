@@ -1,4 +1,4 @@
 angular.module('whooStreams')
-.controller('MainCtrl', function($scope){
-    $scope.hey = "hey ben";
+.controller('MainCtrl', function($scope, authFactory){
+    $scope.logOutButton = authFactory.logOut
 })
