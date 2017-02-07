@@ -1,3 +1,30 @@
-<h1>WhooStreams</h1>
-<button class='btn' ng-click="logOutButton()" type="button" name="button">Log Out</button>
- <h2>{{hey}}</h2>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+        <div class="nav-wrapper row">
+           <a href="/" class="brand-logo m12"><h2>WhooStreams</h2></a>
+            <ul class="right m12">
+                <li><a href="/#/login">Login</a></li>
+                <li><a href="/#/register">Register</a></li>
+                <li><a ng-click="logOutButton()">Log Out</a></li>
+            </ul>
+        </div>
+            <div class="nav-wrapper">
+              <form ng-submit="find(content)">
+                <div class="input-field">
+                  <input ng-model="content" id="search" type="search" required>
+                  <label class="label-icon" for="search"><i class="material-icons search-icon">search</i></label>
+                  <i class="material-icons search-icon">close</i>
+                </div>
+              </form>
+            </div>
+    </nav>
+</div>
+<div class="movieContainer container">
+    <div class="row">
+        <div ng-repeat="movie in movies">
+            <div class="col sm12 m4">
+                <img ng-src="{{movie.poster_240x342}}">
+            </div>
+        </div>
+    </div>
+</div>
