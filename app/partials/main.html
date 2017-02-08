@@ -21,9 +21,40 @@
 </div>
 <div class="movieContainer container">
     <div class="row">
-        <div ng-repeat="movie in movies">
-            <div class="col sm12 m4">
+        <div ng-click="movieId(movie.id)" ng-repeat="movie in movies">
+            <div ng-model="movie.id" class="col sm12 m4">
                 <img ng-src="{{movie.poster_240x342}}">
+            </div>
+        </div>
+        <div>
+            <div class="free">
+                <h4>free</h4>
+                <div ng-repeat="free in frees">
+                    <div>
+                        <a href="{{free.link}}">
+                            <span>{{free.display_name}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="subscription">
+                <h4>Subscriptions</h4>
+                <div ng-repeat="sub in subs">
+                    <a href="{{sub.link}}">
+                        <span>{{sub.display_name}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="purchase">
+                <h4>Purchase</h4>
+                <div ng-repeat="purchase in purchases">
+                    <a href="{{purchase.link}}"><span>{{purchase.display_name}}</span></a>
+                    <span ng-repeat="format in purchase.formats">
+                        <span>{{format.type}}</span>
+                        <span>{{format.format}}</span>
+                        <span>{{format.price}}</span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
