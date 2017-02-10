@@ -1,21 +1,21 @@
 angular.module('whooStreams')
 .controller('MainCtrl', function($scope, authFactory, guideboxMovieFactory,
-    guideboxShowFactory){
+    guideboxShowFactory, firebaseFactory){
     $('#modal1').modal('');
     $('ul.tabs').tabs();
     $scope.logOutButton = authFactory.logOut
 
-    guideboxMovieFactory.loadinMovie()
-    .then((res)=>{
-        console.log("loadin res", res);
-        $scope.movies = res
-    })
-
-    guideboxShowFactory.loadinShows()
-    .then((res)=>{
-        console.log("loadinshow res", res);
-        $scope.shows = res
-    })
+    // guideboxMovieFactory.loadinMovie()
+    // .then((res)=>{
+    //     console.log("loadin res", res);
+    //     $scope.movies = res
+    // })
+    //
+    // guideboxShowFactory.loadinShows()
+    // .then((res)=>{
+    //     console.log("loadinshow res", res);
+    //     $scope.shows = res
+    // })
     $scope.findMovie = (content)=>{
         console.log("content", content);
         guideboxMovieFactory.findMovie(content)
@@ -59,5 +59,12 @@ angular.module('whooStreams')
             $scope.shows = res;
         })
     }
+
+    // $scope.saveMedia = (media)=>{
+    //     firebaseFactory.saveToMyMedia()
+    //     .then((res)=>{
+    //     $scope
+    //     })
+    // }
 
 })
