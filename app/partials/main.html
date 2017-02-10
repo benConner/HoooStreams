@@ -92,16 +92,22 @@
                 </div>
             </div>
             <div class="purchase">
-                <h4>Purchase</h4>
+                <h4><strong>Purchase</strong></h4>
                 <div ng-repeat="purchase in purchases">
-                    <a href="{{purchase.link}}"><span>{{purchase.display_name}}</span></a>
-                    <span ng-repeat="format in purchase.formats">
+                    <a href="{{purchase.link}}">
+                        <span>{{purchase.display_name}}</span>
+                    </a>
+                    <div ng-repeat="format in purchase.formats">
                         <span>{{format.type}}</span>
                         <span>{{format.format}}</span>
-                        <span>{{format.price}}</span>
-                    </span>
+                        <span>${{format.price}}</span>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="addMedia()" href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Save</a>
+        <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
     </div>
 </div>
