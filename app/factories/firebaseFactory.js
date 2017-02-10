@@ -1,9 +1,9 @@
 angular.module('whooStreams')
 .factory('firebaseFactory', function($http){
     return{
-        saveToMyMovies : (content)=>{
+        saveToMyMedia : (user, content)=>{
             return $http
-            .post(`https://whoostreams.firebaseio.com/.json`, content)
+            .post(`https://whoostreams.firebaseio.com/user.json`, content)
             .then((res)=>{
                 console.log("firebaseFactory res", res);
                 return res;
@@ -11,10 +11,10 @@ angular.module('whooStreams')
             .catch((res)=>{
                 console.error(res);
             })
-        }
-        loadinMyMovies : (type)=>{
+        },
+        loadinMyMedia : (user)=>{
             return $http
-            .get(`https://whoostreams.firebaseio.com/.json`)
+            .get(`https://whoostreams.firebaseio.com/user.json`)
             .then((res)=>{
                 console.log("firebaseFactory res", res);
                 return res;

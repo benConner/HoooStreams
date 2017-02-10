@@ -21,6 +21,7 @@
             <li class="tab"><a class="active" href="#movies">Movies</a></li>
             <li class="tab"><a href="#shows">Shows</a></li>
             <li class="tab"><a href="#all">Movies & Shows</a></li>
+            <li class="tab"><a href="#/my_media">My Media</a></li>
         </ul>
     </nav>
 </div>
@@ -45,7 +46,7 @@
     </div>
 </div>
 <div id="all">
-    <div class="movieContainer all">
+    <div class="movieContainer">
         <span class="row">
             <div  ng-click="movieId(movie.id)" ng-repeat="movie in movies | filter:movie.release_year" class="movieCard">
                 <div ng-model="movie.id" class="col sm12 m4 l3">

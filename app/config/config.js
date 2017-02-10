@@ -11,11 +11,10 @@ angular.module('whooStreams')
     }).when('/register',{
         controller: 'RegisterCtrl',
         templateUrl: 'app/partials/register.html'
-    }).when('/my_movies',{
-         controller: 'MyMoviesCtrl',
-         templateUrl: 'app/partials/myMovies.html'
+    }).when('/my_media',{
+         controller: 'MyMediaCtrl',
+         templateUrl: 'app/partials/myMedia.html'
       }).otherwise({
         redirectTo:'/'
     })
  })
-MyMoviesCtrl
