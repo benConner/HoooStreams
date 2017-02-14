@@ -1,21 +1,41 @@
 angular.module('whooStreams')
-.controller('MainCtrl', function($scope, authFactory, guideboxMovieFactory,
-    guideboxShowFactory, firebaseFactory){
+.controller('MainCtrl', function($scope, $location, authFactory, guideboxMovieFactory, guideboxShowFactory, firebaseFactory, user){
+    //materialize modal
     $('#modal1').modal('');
+    //materialize tabs
     $('ul.tabs').tabs();
-    $scope.logOutButton = authFactory.logOut
 
-    // guideboxMovieFactory.loadinMovie()
-    // .then((res)=>{
-    //     console.log("loadin res", res);
-    //     $scope.movies = res
-    // })
-    //
-    // guideboxShowFactory.loadinShows()
-    // .then((res)=>{
-    //     console.log("loadinshow res", res);
-    //     $scope.shows = res
-    // })
+
+    //log out button
+    $scope.logOutButton= ()=>{
+        authFactory.logOut()
+        $scope.logOut = false;
+        $scope.loggedin = true;
+    }
+
+    //checks for current user and shows different buttons if logged in
+    if(!user){
+        console.log("no user");
+        $scope.logOut = false;
+        $scope.loggedin = true;
+    }else if(user){
+        console.log("user");
+        $scope.logOut = true;
+        $scope.loggedin = false;
+        $scope.userId = user.uid
+    }
+
+    guideboxMovieFactory.loadinMovie()
+    .then((res)=>{
+        $scope.movies = res
+    })
+
+    guideboxShowFactory.loadinShows()
+    .then((res)=>{
+        $scope.shows = res
+    })
+
+    //finds movies from title search and the does the same for shows
     $scope.findMovie = (content)=>{
         console.log("content", content);
         guideboxMovieFactory.findMovie(content)
