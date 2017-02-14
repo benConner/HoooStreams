@@ -44,11 +44,12 @@ angular.module('whooStreams')
             $scope.findShow(content)
         })
     }
+    //grabs movie id and gets streaming info
     $scope.movieId = (id)=>{
         console.log("id", id);
         guideboxMovieFactory.findMovieByID(id)
         .then((res)=>{
-            console.log("res", res);
+            $scope.media = res;
             $scope.title = res.title;
             $scope.img = res.poster_240x342;
             $scope.frees = res.free_web_sources;
@@ -57,11 +58,13 @@ angular.module('whooStreams')
             $('#modal1').modal('open')
         })
     }
+    //grabs show id and gets streaming info
     $scope.showId = (show)=>{
-        //console.log("id", id);
         guideboxShowFactory.findShowByID(show.id)
         .then((res)=>{
-            console.log("res", res);
+            show.type = "show";
+            console.log("show", show);
+            $scope.media = show;
             $scope.title = show.title;
             $scope.img = show.artwork_208x117;
             $scope.frees = res;
@@ -71,6 +74,7 @@ angular.module('whooStreams')
         })
     }
 
+    // function to find shows by title
     $scope.findShow = (content)=>{
         console.log("content", content);
         guideboxShowFactory.findShow(content)
@@ -80,11 +84,15 @@ angular.module('whooStreams')
         })
     }
 
-    // $scope.saveMedia = (media)=>{
-    //     firebaseFactory.saveToMyMedia()
-    //     .then((res)=>{
-    //     $scope
-    //     })
-    // }
+    //saves media to users firebase
+    $scope.addMedia = (uid, media)=>{
+        console.log("media", media);
+        firebaseFactory.saveToMyMedia(uid, media)
+    }
+
+    //my media tab redirect
+    $scope.media = ()=>{
+        $location.url('/my_media')
+    }
 
 })

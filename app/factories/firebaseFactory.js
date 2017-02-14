@@ -2,8 +2,9 @@ angular.module('whooStreams')
 .factory('firebaseFactory', function($http){
     return{
         saveToMyMedia : (user, content)=>{
+            //
             return $http
-            .post(`https://whoostreams.firebaseio.com/user.json`, content)
+            .post(`https://whoostreams.firebaseio.com/${user}.json`, content)
             .then((res)=>{
                 console.log("firebaseFactory res", res);
                 return res;
