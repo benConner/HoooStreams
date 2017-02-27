@@ -27,7 +27,6 @@ angular.module('whooStreams')
             }
             guideboxShowFactory.findShowByID(id)
             .then((res)=>{
-                console.log("tv", res);
                 $scope.title = tv.title;
                 $scope.img = tv.artwork_304x171;
                 $scope.srces = res;
@@ -46,14 +45,12 @@ angular.module('whooStreams')
         movieId($routeParams.mediaId)
         guideboxMovieFactory.mediaVideos($routeParams.type, $routeParams.mediaId, 'videos')
         .then((res)=>{
-            console.log("res", res);
             $scope.vidsArray = res;
         })
     }else{
         showId($routeParams.mediaId, $routeParams.content)
         guideboxShowFactory.findShowEpisode($routeParams.mediaId)
         .then((res)=>{
-            console.log("res", res);
             $scope.vidsArray = res;
 
         })

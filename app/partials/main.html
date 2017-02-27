@@ -1,45 +1,50 @@
 <div class="navbar-fixed">
     <nav class="nav-extended">
-        <div class="nav-wrapper row">
-            <a href="/" class="brand-logo  col m6"><h2>WhooStreams</h2></a>
-            <ul class="right col m
-            6">
-                <li><a ng-hide="logOut"class="loginButton" href="/#/login">Login</a></li>
-                <li><a ng-hide="logOut" class="registerButton" href="/#/register">Register</a></li>
-                <li><a ng-hide="loggedin" class="logoutButton" ng-click="logOutButton()">Log Out</a></li>
+        <div class="nav-wrapper row topNav">
+            <div class="col m3 imgHeight">
+                <a href="/"><img class="whooStreams" src="WHOOSTREAMS.png" alt="WhooStreams logo"></a>
+            </div>
+            <div class="nav-wrapper col m6 searchField">
+                <form ng-submit="findMovie(content)">
+                    <div class="input-field">
+                        <input ng-model="content" id="search" type="search" required>
+                        <label class="label-icon" for="search" placeholder="Search by Movie or Show"><i class="material-icons search-icon">search</i></label>
+                        <i class="material-icons search-icon">close</i>
+                    </div>
+                </form>
+            </div>
+            <div class=" col m3">
+                <ul class="right">
+                    <li><a ng-hide="logOut"class="loginButton" href="/#/login">Login</a></li>
+                    <li><a ng-hide="logOut" class="registerButton" href="/#/register">Register</a></li>
+                    <li><a ng-hide="loggedin" class="logoutButton" ng-click="logOutButton()">Log Out</a></li>
+                    <li ng-click="myMedia()" ng-hide="loggedin" class="my media"><a>My Media</a></li>
+                </ul>
+            </div>
+        </div>
+        <span>
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a class="active" href="#movies">Movies</a></li>
+                <li class="tab"><a href="#shows">Shows</a></li>
+                <li class="tab"><a href="#all">Movies & Shows</a></li>
             </ul>
-        </div>
-        <div class="nav-wrapper">
-            <form ng-submit="findMovie(content)">
-                <div class="input-field">
-                    <input ng-model="content" id="search" type="search" required>
-                    <label class="label-icon" for="search" placeholder="Search by Movie or Show"><i class="material-icons search-icon">search</i></label>
-                    <i class="material-icons search-icon">close</i>
-                </div>
-            </form>
-        </div>
-        <ul class="tabs tabs-transparent">
-            <li class="tab"><a class="active" href="#movies">Movies</a></li>
-            <li class="tab"><a href="#shows">Shows</a></li>
-            <li class="tab"><a href="#all">Movies & Shows</a></li>
-            <li ng-click="media()" ng-hide="loggedin" class="tab"><a>My Media</a></li>
-        </ul>
+        </span>
     </nav>
 </div>
-<div id="movies" class="movieContainer all">
+<div id="movies" class="movieContainer">
     <div class="row">
-        <div  ng-click="movieId(movie.id)" ng-repeat="movie in movies" class="movieCard">
-            <div ng-model="movie.id" class="col sm12 m4 l3">
+        <div  ng-click="movieId(movie)" ng-repeat="movie in movies" class="">
+            <div class="col s12 m4 l3">
                 <div class="movieTitle">{{movie.title}}</div>
-                <img class="modalPoster" ng-src="{{movie.poster_240x342}}">
+                <img class="" ng-src="{{movie.poster_240x342}}">
             </div>
         </div>
     </div>
 </div>
 <div id="shows" class="movieContainer test3">
     <div class="row">
-        <div  ng-click="showId(show)" ng-repeat="show in shows" class="movieCard">
-            <div ng-model="show.id" class="col sm12 m4 l3">
+        <div  ng-click="showId(show)" ng-repeat="show in shows" class="">
+            <div ng-model="show.id" class="col s12 m4 l3">
                 <div class="showTitle">{{show.title}}</div>
                 <img class="modalPoster" ng-src="{{show.artwork_208x117}}">
             </div>
@@ -49,10 +54,10 @@
 <div id="all">
     <div class="movieContainer">
         <span class="row">
-            <div  ng-click="movieId(movie.id)" ng-repeat="movie in movies | filter:movie.release_year" class="movieCard">
-                <div ng-model="movie.id" class="col sm12 m4 l3">
+            <div  ng-click="movieId(movie)" ng-repeat="movie in movies" class="">
+                <div class="col s12 m4 l3">
                     <div class="movieTitle">{{movie.title}}</div>
-                    <img class="modalPoster" ng-src="{{movie.poster_240x342}}">
+                    <img class="" ng-src="{{movie.poster_240x342}}">
                 </div>
             </div>
         </span>
@@ -60,56 +65,12 @@
     <div>
         <h1>Shows</h1>
         <div class="row">
-            <div  ng-click="showId(show)" ng-repeat="show in shows" class="movieCard">
-                <div ng-model="show.id" class="col sm12 m4 l3">
+            <div  ng-click="showId(show)" ng-repeat="show in shows" class="">
+                <div class="col s12 m4 l3">
                     <div class="showTitle">{{show.title}}</div>
                     <img class="modalPoster" ng-src="{{show.artwork_208x117}}">
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content row">
-        <div class="streamingResults">
-            <h3 class="col sm12">{{title}}</h3>
-            <img class="col m6" ng-src="{{img}}" alt="{{title}}movie poster">
-            <div class="free col m6">
-                <h4><strong>Free</strong></h4>
-                <div ng-repeat="free in frees">
-                    <div>
-                        <a href="{{free.link}}">
-                            <span>{{free.display_name}}</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="subscription">
-            <strong>Subscriptions</strong>
-                <div ng-repeat="sub in subs">
-                    <a href="{{sub.link}}">
-                        <span>{{sub.display_name}}</span>
-                    </a>
-                </div>
-            </div>
-            <div class="purchase">
-                <h4><strong>Purchase</strong></h4>
-                <div ng-repeat="purchase in purchases">
-                    <a href="{{purchase.link}}">
-                        <span>{{purchase.display_name}}</span>
-                    </a>
-                    <div ng-repeat="format in purchase.formats">
-                        <span>{{format.type}}</span>
-                        <span>{{format.format}}</span>
-                        <span>${{format.price}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a ng-hide="loggedin" ng-click="addMedia(userId, media)" href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Save</a>
-        <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
     </div>
 </div>

@@ -1,7 +1,5 @@
 angular.module('whooStreams')
 .controller('MainCtrl', function($scope, $location, authFactory, guideboxMovieFactory, guideboxShowFactory, firebaseFactory, user){
-    //materialize modal
-    $('#modal1').modal('');
     //materialize tabs
     $('ul.tabs').tabs();
 
@@ -15,11 +13,9 @@ angular.module('whooStreams')
 
     //checks for current user and shows different buttons if logged in
     if(!user){
-        console.log("no user");
         $scope.logOut = false;
         $scope.loggedin = true;
     }else if(user){
-        console.log("user");
         $scope.logOut = true;
         $scope.loggedin = false;
         $scope.userId = user.uid
