@@ -20,7 +20,13 @@ angular.module('whooStreams')
         resolve: {user: function(authFactory){
             return authFactory.showHideLogout()
         }}
-      }).otherwise({
+    }).when('/media/:type/:content/:mediaId',{
+        controller: 'MediaCardCtrl',
+        templateUrl: 'app/partials/MediaCard.html',
+        resolve:{user: function(authFactory){
+            return authFactory.saveLogout()
+        }}
+    }).otherwise({
         redirectTo:'/'
     })
  })
