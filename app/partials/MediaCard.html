@@ -1,0 +1,80 @@
+<div class="container mediaContainer" >
+    <div class="row">
+        <div class="col s12">
+            <h3 class="col s7">{{title}}</h3>
+            <div class="col s5 ">
+                <a href="/" class="right waves-effect waves btn-flat">Go Back</a>
+                <a href="/#/my_media" ng-hide="uid === null" class="right  waves-effect waves btn-flat">My Media</a>
+                <a ng-hide="uid === null" ng-click="addMedia(media)" href="" class="right waves-effect waves btn-flat ">Save</a>
+            </div>
+        </div>
+        <div class="col m4 left">
+            <img class="movieCard" ng-src="{{img}}">
+            <div>{{overview}}</div>
+        </div>
+        <div class="streamingResults right col m8">
+            <div ng-hide="frees.length === 0 || frees === undifined">
+                <strong class="col s12 free">Free</strong>
+                <div class="col m3 sources" ng-repeat="free in frees">
+                    <a href="{{free.link}}">
+                        <span>{{free.display_name}}</span>
+                    </a>
+                </div>
+            </div>
+            <div ng-hide="subs.length === 0 || subs === undifined">
+            <strong class="col s12 subscription" >Subscriptions</strong>
+                <div class="col m3 sources" ng-repeat="sub in subs">
+                    <a href="{{sub.link}}">
+                        <span>{{sub.display_name}}</span>
+                    </a>
+                </div>
+            </div>
+            <div ng-hide="purchases.length === 0 || purchases === undifined">
+                <strong class="col s12 purchase">Purchase</strong>
+                <div class="col m3 sources" ng-repeat="purchase in purchases">
+                    <a href="{{purchase.link}}">
+                        <span>{{purchase.display_name}}</span>
+                    </a>
+                    <div ng-repeat="format in purchase.formats">
+                        <span>{{format.type}}</span>
+                        <span>{{format.format}}</span>
+                        <span>${{format.price}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sources col m4">
+                <div ng-repeat="srce in srces">
+                    {{srce.display_name}} ({{srce.type}})
+                </div>
+            </div>
+            <div ng-show="type==='shows'" class="videos row s12">
+                <div class="vidContainer" ng-repeat="vidObj in vidsArray">
+                    <strong>{{vidObj.title}}</strong>
+                    <span class="videoType"> Episode:{{vidObj.episode_number}}</span>
+                    <span class="videoType">{{vidObj.video_type}}</span>
+                    <div id="f1_container">
+                        <div id="f1_card" class="shadow">
+                          <div class="front face">
+                            <img ng-src="{{vidObj.thumbnail_400x225}}">
+                          </div>
+                          <div ng-repeat="vidSrc in vidObj.subscription_web_sources " class="back face">
+                            <div >
+                                <a class="" href="{{vidSrc.link}}">{{vidSrc.display_name}}</a>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="type==='movies'" class="videos col s12">
+                <div class="vidContainer" ng-repeat="vidObj in vidsArray">
+                    <strong>{{vidObj.title}}</strong>
+                    <span class="videoType">{{vidObj.video_type}}</span>
+                    <span ng-repeat="mediaVid in vidObj.free_web_sources">
+                    <iframe class="srcVideo" width="643" height="364" allowfullscreen  ng-src="{{mediaVid.embed | trusted}}"></iframe>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
