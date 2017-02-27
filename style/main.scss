@@ -4,10 +4,10 @@ body{
     background-color: #E0DFD5;
 }
 .movieContainer{
-    padding-top: 150px;
+    padding-top: 100px;
     padding-bottom: 25px;
 }
-movieCard{
+.movieCard, .modalPoster {
     box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.35);
 }
 h4{
@@ -21,6 +21,51 @@ h4{
     color: #E0DFD5;
 }
 nav{
-    background-color: #54494B;
+    background-color: #787171;
     color: #E4B363;
+}
+.purchase, .subscription , .free{
+    border-bottom: 1px solid black;
+}
+.sources{
+    min-height: 140px !important;
+    margin-bottom: 0px;
+}
+
+.mediaContainer{
+    width: 90% !important;
+    margin-top: 20px;
+
+}
+.videos{
+    max-height: 390px;
+    max-width: 643px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin-right: 10px;
+    .vidContainer{
+        margin-right: 10px;
+    }
+}
+
+.whooStreams{
+    padding-top: 5px;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+.row{
+    margin-bottom: 0;
+}
+.searchField{
+    padding-top: 15px !important;
+
+}
+.topNav, .imgHeight{
+    max-height: 100px !important;
+}
+.videoType{
+    padding-left: 10px;
+    font-size: .9em;
 }
