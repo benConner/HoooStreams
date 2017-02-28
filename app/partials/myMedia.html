@@ -1,0 +1,74 @@
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+        <div class="nav-wrapper row topNav">
+            <div class="col m3">
+                <a href="/"><img class="whooStreams" src="WHOOSTREAMS.png" alt="WhooStreams logo"></a>
+            </div>
+            <div>
+                <a href="/" class=" right modal-action modal-close waves-effect waves btn-flat ">Go Back</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="movieContainer">
+    <span class="row">
+        <div ng-show="val.type === 'movies'"  ng-click="movieId(val, key)" ng-repeat="(key, val) in media">
+            <div ng-model="val.id" class="col s12 m4 l3">
+                <div class="movieTitle">{{val.title}}</div>
+                <img class="modalPoster" ng-src="{{val.poster_240x342}}">
+            </div>
+        </div>
+    </span>
+</div>
+<div id="shows" class="movieContainer test3">
+    <div class="row">
+        <div ng-show="val.type === 'shows'"  ng-click="showId(val, key)" ng-repeat="(key, val) in media">
+            <div ng-model="val" class="col s12 m4 l3">
+                <div class="showTitle">{{val.title}}</div>
+                <img class="modalPoster" ng-src="{{val.artwork_208x117}}">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content row">
+        <div class="streamingResults">
+            <h3 class="col s12">{{title}}</h3>
+            <img class="col m6" ng-src="{{img}}" alt="{{title}} movie poster">
+            <div ng-hide="frees.length === 0 || frees === undefined"  class="col m6">
+                <h4><strong>Free</strong></h4>
+                <div ng-repeat="free in frees">
+                    <div>
+                        <a href="{{free.link}}">
+                            <span>{{free.display_name}}</span>
+                        </a>
+                    </div>
+                    <div ng-show="frees.length === 0">
+                        Sorry, no free sources available at this time.
+                    </div>
+                </div>
+            </div>
+            <div ng-hide="subs === undefined">
+            <strong>Subscriptions</strong>
+                <div ng-hide="subs.length === 0" ng-repeat="sub in subs">
+                    <a href="{{sub.link}}">
+                        <span>{{sub.display_name}}</span>
+                    </a>
+                </div>
+                <div ng-show="subs.length === 0">
+                    Sorry, no subscriptions sources available at this time.
+                </div>
+            </div>
+            <div class="sources right" ng-hide="srces === undefined">
+                <div ng-repeat="srce in srces">
+                    {{srce.display_name}} ({{srce.type}})
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+        <a ng-click="mediaInfoPage(mediaInfo)" href="" class="modal-action modal-close waves-effect waves-green btn-flat ">More Info</a>
+        <a ng-click="deleteMedia(userId, key)" href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Delete</a>
+    </div>
+</div>
