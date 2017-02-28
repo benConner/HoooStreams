@@ -4,15 +4,6 @@
             <div class="col m3">
                 <a href="/"><img class="whooStreams" src="WHOOSTREAMS.png" alt="WhooStreams logo"></a>
             </div>
-            <div class="nav-wrapper col m9 searchField">
-                <!-- <form ng-submit="findMovie(content)">
-                    <div class="input-field">
-                        <input ng-model="myContent" id="search" type="search" required>
-                        <label class="label-icon" for="search" placeholder="Search by Movie or Show"><i class="material-icons search-icon">search</i></label>
-                        <i class="material-icons search-icon">close</i>
-                    </div>
-                </form> -->
-            </div>
             <div>
                 <a href="/" class=" right modal-action modal-close waves-effect waves btn-flat ">Go Back</a>
             </div>
@@ -52,33 +43,32 @@
                             <span>{{free.display_name}}</span>
                         </a>
                     </div>
+                    <div ng-show="frees.length === 0">
+                        Sorry, no free sources available at this time.
+                    </div>
                 </div>
             </div>
-            <div class="subscription">
+            <div ng-hide="subs === undefined">
             <strong>Subscriptions</strong>
-                <div ng-repeat="sub in subs">
+                <div ng-hide="subs.length === 0" ng-repeat="sub in subs">
                     <a href="{{sub.link}}">
                         <span>{{sub.display_name}}</span>
                     </a>
                 </div>
+                <div ng-show="subs.length === 0">
+                    Sorry, no subscriptions sources available at this time.
+                </div>
             </div>
-            <div class="purchase">
-                <h4><strong>Purchase</strong></h4>
-                <div ng-repeat="purchase in purchases">
-                    <a href="{{purchase.link}}">
-                        <span>{{purchase.display_name}}</span>
-                    </a>
-                    <div ng-repeat="format in purchase.formats">
-                        <span>{{format.type}}</span>
-                        <span>{{format.format}}</span>
-                        <span>${{format.price}}</span>
-                    </div>
+            <div class="sources right" ng-hide="srces === undefined">
+                <div ng-repeat="srce in srces">
+                    {{srce.display_name}} ({{srce.type}})
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <a ng-hide="loggedin" ng-click="deleteMedia(userId, key)" href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Delete</a>
         <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+        <a ng-click="mediaInfoPage(mediaInfo)" href="" class="modal-action modal-close waves-effect waves-green btn-flat ">More Info</a>
+        <a ng-click="deleteMedia(userId, key)" href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Delete</a>
     </div>
 </div>
