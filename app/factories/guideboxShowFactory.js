@@ -21,6 +21,13 @@ angular.module('whooStreams')
             .then((res)=>{
                 return res.data.results.web.episodes.all_sources;
             })
-        }
+        },
+        findShowEpisode : (id)=>{
+            return $http
+            .get(`http://api-public.guidebox.com/v2/shows/${id}/episodes?api_key=801414ed2250b78cfd77530a81236699a890f6ec&platform=web&sources=subscription&include_links=true `)
+            .then((res)=>{
+                return res.data.results;
+            })
+        },
     }
 })
