@@ -32,6 +32,18 @@ angular.module('whooStreams')
                     }
                   })
             })
+        },
+        saveLogout : ()=> {
+            return $q((resolve, reject)=>{
+                const authReady = firebase.auth().onAuthStateChanged(user => {
+                    authReady()
+                    if (!user) {
+                        resolve(null)
+                    } else if (user) {
+                        resolve(user)
+                    }
+                  })
+            })
         }
     }
 
