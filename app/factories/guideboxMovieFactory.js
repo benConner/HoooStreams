@@ -30,6 +30,13 @@ angular.module('whooStreams')
             .catch((res)=>{
                 console.error(res);
             })
+        },
+        mediaVideos : (type, id, video) =>{
+            return $http
+            .get(`http://api-public.guidebox.com/v2/${type}/${id}/${video}?api_key=801414ed2250b78cfd77530a81236699a890f6ec`)
+            .then((res)=>{
+                return res.data.results
+            })
         }
     }
 })
