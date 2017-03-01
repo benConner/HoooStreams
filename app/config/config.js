@@ -2,16 +2,16 @@ angular.module('whooStreams')
 .config(function($routeProvider, $locationProvider){
     $locationProvider.hashPrefix('')
     $routeProvider
-    .when('/', {
+    .when('WhooStreams/', {
         controller: 'MainCtrl',
         templateUrl: 'app/partials/main.html',
         resolve: {user: function(authFactory){
             return authFactory.showHideLogout()
         }}
-    }).when('/login',{
+    }).when('WhooStreams/login',{
         controller: 'LoginCtrl',
         templateUrl: 'app/partials/login.html'
-    }).when('/register',{
+    }).when('WhooStreams/register',{
         controller: 'RegisterCtrl',
         templateUrl: 'app/partials/register.html'
     }).when('/my_media',{
@@ -20,13 +20,13 @@ angular.module('whooStreams')
         resolve: {user: function(authFactory){
             return authFactory.showHideLogout()
         }}
-    }).when('/media/:type/:content/:mediaId',{
+    }).when('WhooStreams/media/:type/:content/:mediaId',{
         controller: 'MediaCardCtrl',
         templateUrl: 'app/partials/MediaCard.html',
         resolve:{user: function(authFactory){
             return authFactory.saveLogout()
         }}
     }).otherwise({
-        redirectTo:'/'
+        redirectTo:'WhooStreams/'
     })
  })
