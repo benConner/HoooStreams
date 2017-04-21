@@ -3,7 +3,7 @@ angular.module('whooStreams')
     return{
         loadinMovie : (type)=>{
             return $http
-            .get(`http://api-public.guidebox.com/v2/movies?api_key=801414ed2250b78cfd77530a81236699a890f6ec&limit=24`)
+            .get(`https://api-public.guidebox.com/v2/movies?api_key=801414ed2250b78cfd77530a81236699a890f6ec&limit=24`)
             .then((res)=>{
                 return res.data.results;
             })
@@ -13,7 +13,7 @@ angular.module('whooStreams')
         },
         findMovie : (title)=>{
             return $http
-            .get(`http://api-public.guidebox.com/v2/search?api_key=801414ed2250b78cfd77530a81236699a890f6ec&type=movie&field=title&limit=5&query=${title}`)
+            .get(`https://api-public.guidebox.com/v2/search?api_key=801414ed2250b78cfd77530a81236699a890f6ec&type=movie&field=title&limit=5&query=${title}`)
             .then((res)=>{
                 return res.data.results.slice(0,12);
             })
@@ -23,7 +23,7 @@ angular.module('whooStreams')
         },
         findMovieByID : (id)=>{
             return $http
-            .get(`http://api-public.guidebox.com/v2/movies/${id}?api_key=801414ed2250b78cfd77530a81236699a890f6ec&sources=free,amazon_prime,netflix,hulu,hbo,showtime,stars,i_tune,google_play,cinemax,vudu`)
+            .get(`https://api-public.guidebox.com/v2/movies/${id}?api_key=801414ed2250b78cfd77530a81236699a890f6ec&sources=free,amazon_prime,netflix,hulu,hbo,showtime,stars,i_tune,google_play,cinemax,vudu`)
             .then((res)=>{
                 return res.data;
             })
@@ -33,7 +33,7 @@ angular.module('whooStreams')
         },
         mediaVideos : (type, id, video) =>{
             return $http
-            .get(`http://api-public.guidebox.com/v2/${type}/${id}/${video}?api_key=801414ed2250b78cfd77530a81236699a890f6ec`)
+            .get(`https://api-public.guidebox.com/v2/${type}/${id}/${video}?api_key=801414ed2250b78cfd77530a81236699a890f6ec`)
             .then((res)=>{
                 return res.data.results
             })
