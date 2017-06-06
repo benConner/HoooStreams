@@ -20,12 +20,12 @@ angular.module('whooStreams')
         $scope.loggedin = false;
         $scope.userId = user.uid
     }
-
+    //load movie on page load
     guideboxMovieFactory.loadinMovie()
     .then((res)=>{
         $scope.movies = res
     })
-
+    //load shows on page load
     guideboxShowFactory.loadinShows()
     .then((res)=>{
         $scope.shows = res
