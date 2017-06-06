@@ -3,6 +3,7 @@ angular.module('whooStreams')
     //materialize modal
     $('#modal1').modal('');
 
+    //loads users profile
     load()
 
     function load(){
@@ -11,8 +12,10 @@ angular.module('whooStreams')
             $scope.media = res.data
         })
     }
+    // checks user authentication
     $scope.userId = firebase.auth().currentUser.uid;
 
+    // movie break down of info returned
     $scope.movieId = (movie, key)=>{
         guideboxMovieFactory.findMovieByID(movie.id)
         .then((res)=>{
@@ -26,6 +29,7 @@ angular.module('whooStreams')
             $('#modal1').modal('open')
         })
     }
+    // show break down of info returned
     $scope.showId = (show, key)=>{
         guideboxShowFactory.findShowByID(show.id)
         .then((res)=>{
@@ -39,13 +43,14 @@ angular.module('whooStreams')
             $('#modal1').modal('open')
         })
     }
-
+    // function to delete meadia by id from firebase
     $scope.deleteMedia = (id, content)=>{
         firebaseFactory.deleteMyMedia(id, content)
         .then((res)=>{
             load()
         })
     }
+    //funtion to pass info needed to find the right media
     $scope.mediaInfoPage = (mediaInfo)=>{
             $location.url(`/media/${mediaInfo.type}/${mediaInfo.title}/${mediaInfo.id}/`)
     }
