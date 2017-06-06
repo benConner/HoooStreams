@@ -1,5 +1,6 @@
 angular.module('whooStreams')
 .config(function($routeProvider, $locationProvider){
+    //views for all available routes
     $locationProvider.hashPrefix('')
     $routeProvider
     .when('/', {
